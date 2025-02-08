@@ -1,0 +1,29 @@
+why we need to create modal after schema in Node.js project?
+   A schema defines the structure of the documents within a collection in MongoDB. It specifies the fields, their types, and any validation rules. This helps ensure that the data stored in the database adheres to a specific format.
+   A model is a compiled version of the schema. It provides an interface to interact with the database, allowing you to create, read, update, and delete documents in the corresponding collection. The model is what you use in your application code to perform operations on the database.
+
+MongoDB Atlas is a MongoDB cloud that provide the host to your database
+How to connect MongoDB Atlas to MongoDB compass?
+   https://www.mongodb.com/docs/compass/current/connect/ (this site will be helpful)
+
+**https://cloud.mongodb.com/v2/679bbd6f73b713065a882afd#/security/database/users**
+
+
+{
+    "DoctorName": "Anuj jain",
+    "specialization": "Allopathy",
+    "category": "arthologist",
+    "contact": "9828135049",
+    "availableSlots": {
+        "morning": "9:30 - 12:00",
+        "evening": "6:00-9:00"
+    },
+    "Country": "India",
+    "State": "Delhi",
+    "Location": "Shahadra",
+    "area": "100 futa",
+    "offday": [
+        "sunday"
+    ],
+    "rating": "4.5"
+}
