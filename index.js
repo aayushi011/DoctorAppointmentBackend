@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const AddDoctor = require('./AddDoctor.js');
 const AllDoctors = require('./AllDoctors.js');
 const Doctor = require("./Modals/AddDoctorModal.js");
+const Patient = require("./Modals/PatientModal.js");
 
 
 const server = express();
@@ -94,7 +95,32 @@ server.post("/addDoctor",async (req, res) => {
   })
 
 
-server.get("/allDoctors",AllDoctors);
+server.get("/allDoctors",async(req,res)=>{
+    try {
+        const doctors = await Doctor.find();
+        res.status(200).send({ msg: "Data retrieved successfully", data: doctors });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ msg: "Something went wrong", error: error.message });
+    }
+});
+
+server.post("/patient",async(req,res)=>{
+    try{
+        patientdata = req.body;
+        const savepatientdata = new Patient({
+            patientName:patientdata.patientName,
+            patientMobileNo: patientdata.patientMobileNo,
+            describeHealtIsuue:patientdata.describeHealtIsuue,
+            prefferedTime: patientdata.prefferedTime
+        })
+        savepatientdata.save();
+        res.send(200).send({msg:"Patient Data save Successfully", statuscode: 200 })
+    }catch(error){
+        console.log(error);
+        res.status(500).send({ msg: "Something went wrong", error: error.message });
+    }
+})
 
 const PORT = process.env.PORT || 3001;
 server.listen(PORT,()=>{
